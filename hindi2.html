@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>फॉर्म हिंदी में</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #FFF3E0; /* Light Cream */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #FFFFFF;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            padding: 20px;
+            max-width: 400px;
+            width: 100%;
+        }
+        h1 {
+            text-align: center;
+            color: #FF4500;
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            color: #333;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        select {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            background-color: #FF4500;
+            color: white;
+            font-size: 1.2em;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #E14000;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>अपनी जानकारी भरें</h1>
+        <label for="name">नाम:</label>
+        <input type="text" id="name" name="name" required>
+        
+        <label for="phone">फ़ोन नंबर:</label>
+        <input type="number" id="phone" name="phone" required>
+
+        <label for="address">पता:</label>
+        <select id="address" name="address" required>
+            <option value="">एक विकल्प चुनें</option>
+            <option value="sec 4 BHEL">सेक्टर 4 भेल</option>
+            <option value="sec 5 BHEL">सेक्टर 5 भेल</option>
+            <option value="sec 3 BHEL">सेक्टर 3 भेल</option>
+            <option value="SHIVALIK NAGAR">शिवालिक नगर</option>
+            <option value="TEHRI">टिहरी</option>
+            <option value="SUBHASH NAGAR">सुभाष नगर</option>
+        </select>
+
+        <button onclick="submitForm()">सबमिट करें</button>
+    </div>
+    <script>
+        function submitForm() {
+            console.log('Submit form function called');
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const address = document.getElementById('address').value;
+
+            const data = { name, phone, address };
+
+            console.log('Form Data:', data);
+
+            alert('फॉर्म सबमिट हो गया!');
+        }
+    </script>
+</body>
+</html>
