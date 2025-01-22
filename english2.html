@@ -101,6 +101,9 @@
                 } else {
                     alert('There was an error submitting the form.');
                 }
+            }).catch(error => {
+                console.error('Error:', error);
+                alert('There was an error submitting the form.');
             });
         });
     </script>
