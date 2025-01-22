@@ -53,10 +53,6 @@
         button:hover {
             background-color: #45a049;
         }
-        .container form div {
-            text-align: center;
-            margin-top: 10px;
-        }
     </style>
 </head>
 <body>
@@ -89,17 +85,21 @@
             const phone = document.getElementById('phone').value;
             const address = document.getElementById('address').value;
 
-            fetch('https://hooks.zapier.com/hooks/catch/21408621/2klkq9k/', {
+            fetch('YOUR_ZAPIER_WEBHOOK_URL', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ name, phone, address })
+                body: JSON.stringify({ name, phone, address }),
+                mode: 'cors' // Enable CORS mode
             }).then(response => {
                 if (response.ok) {
                     alert('Form submitted successfully!');
                 } else {
-                    alert('There was an error submitting the form.');
+                    return response.json().then(error => {
+                        console.error('Error:', error);
+                        alert('There was an error submitting the form.');
+                    });
                 }
             }).catch(error => {
                 console.error('Error:', error);
