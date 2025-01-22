@@ -5,99 +5,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Form in English</title>
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #FFF3E0; /* Light Cream */
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-        .container {
-            background-color: #7ab4de;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            padding: 20px;
-            max-width: 400px;
-            width: 100%;
-        }
-        h1 {
-            text-align: center;
-            color: #FF4500;
-            margin-bottom: 20px;
-        }
-        label {
-            display: block;
-            margin: 10px 0 5px;
-            color: #333;
-        }
-        input {
-            width: 100%;
-            padding: 10px;
-            margin: 5px 0 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        select {
-            width: 100%;
-            padding: 10px;
-            margin: 5px 0 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        button {
-            width: 100%;
-            padding: 10px;
-            border: none;
-            background-color: #FF4500;
-            color: white;
-            font-size: 1.2em;
-            cursor: pointer;
-            border-radius: 5px;
-            margin-top: 10px;
-        }
-        button:hover {
-            background-color: #E14000;
-        }
+        /* Add your styles here */
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Fill Your Details</h1>
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required>
-        
-        <label for="phone">Phone No.:</label>
-        <input type="number" id="phone" name="phone" required>
+        <form id="dataForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            
+            <label for="phone">Phone No.:</label>
+            <input type="number" id="phone" name="phone" required>
 
-        <label for="address">Address:</label>
-        <select id="address" name="address" required>
-            <option value="">Select an option</option>
-            <option value="sec 4 BHEL">Sec 4 BHEL</option>
-            <option value="sec 5 BHEL">Sec 5 BHEL</option>
-            <option value="sec 3 BHEL">Sec 3 BHEL</option>
-            <option value="SHIVALIK NAGAR">Shivalik Nagar</option>
-            <option value="TEHRI">Tehri</option>
-            <option value="SUBHASH NAGAR">Subhash Nagar</option>
-        </select>
-
-        <button onclick="submitForm()">Submit</button>
+            <label for="address">Address:</label>
+            <select id="address" name="address" required>
+                <option value="">Select an option</option>
+                <option value="sec 4 BHEL">Sec 4 BHEL</option>
+                <option value="sec 5 BHEL">Sec 5 BHEL</option>
+                <option value="sec 3 BHEL">Sec 3 BHEL</option>
+                <option value="SHIVALIK NAGAR">Shivalik Nagar</option>
+                <option value="TEHRI">Tehri</option>
+                <option value="SUBHASH NAGAR">Subhash Nagar</option>
+            </select>
+            <button type="submit">Submit</button>
+        </form>
     </div>
     <script>
-        function submitForm() {
-            console.log('Submit form function called');
+        document.getElementById('dataForm').addEventListener('submit', function(event) {
+            event.preventDefault();
             const name = document.getElementById('name').value;
             const phone = document.getElementById('phone').value;
             const address = document.getElementById('address').value;
 
-            const data = { name, phone, address };
-
-            console.log('Form Data:', data);
-
-            alert('Form submitted!');
-        }
+            fetch('https://hooks.zapier.com/hooks/catch/21408621/2klkq9k/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ name, phone, address })
+            }).then(response => {
+                if (response.ok) {
+                    alert('Form submitted successfully!');
+                } else {
+                    alert('There was an error submitting the form.');
+                }
+            });
+        });
     </script>
 </body>
 </html>
