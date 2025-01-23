@@ -85,25 +85,28 @@
         const phone = document.getElementById('phone').value;
         const address = document.getElementById('address').value;
 
-        fetch('http://192.168.29.170:3000/proxy', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ name, phone, address })
-        }).then(response => {
-            if (response.ok) {
-                return response.json(); // Convert response to JSON
-            } else {
-                throw new Error('Network response was not ok.');
-            }
-        }).then(data => {
-            alert('Form submitted successfully!');
-            console.log('Success:', data);
-        }).catch(error => {
-            console.error('Error:', error);
-            alert('There was an error submitting the form.');
-        });
+        fetch('http://localhost:3000/proxy', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ name, phone, address })
+})
+.then(response => {
+    if (response.ok) {
+        return response.json(); // Convert response to JSON
+    } else {
+        throw new Error('Network response was not ok.');
+    }
+})
+.then(data => {
+    alert('Form submitted successfully!');
+    console.log('Success:', data);
+})
+.catch(error => {
+    console.error('Error:', error);
+    alert('There was an error submitting the form.');
+});
     });
 </script>
 </body>
